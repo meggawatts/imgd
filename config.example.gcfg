@@ -7,6 +7,8 @@ cache = memory
 # Whether to store statistics about API usage. This requires a
 # redis connection if true (fill the config below).
 statisticsEnabled = false
+# The StatHat user key to report stats to
+statHat = me@example.com
 
 [redis]
 # If you're using Redis caching, you should fill this section out.

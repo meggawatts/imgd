@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/minotar/minecraft"
+	"github.com/stathat/go"
 	"net/http"
 	"strconv"
 	"strings"
@@ -64,24 +65,34 @@ func (router *Router) ResolveMethod(skin *mcSkin, resource string) func(int) err
 
 	switch resource {
 	case "Avatar":
+		stathat.PostEZCountOne("served-avatar", config.Server.StatHat)
 		return skin.GetHead
 	case "Helm":
+		stathat.PostEZCountOne("served-helm", config.Server.StatHat)
 		return skin.GetHelm
 	case "Cube":
+		stathat.PostEZCountOne("served-cube", config.Server.StatHat)
 		return skin.GetCube
 	case "Bust":
+		stathat.PostEZCountOne("served-bust", config.Server.StatHat)
 		return skin.GetBust
 	case "Body":
+		stathat.PostEZCountOne("served-body", config.Server.StatHat)
 		return skin.GetBody
 	case "Armor/Bust":
+		stathat.PostEZCountOne("served-armor/bust", config.Server.StatHat)
 		return skin.GetArmorBust
 	case "Armour/Bust":
+		stathat.PostEZCountOne("served-armor/bust", config.Server.StatHat)
 		return skin.GetArmorBust
 	case "Armor/Body":
+		stathat.PostEZCountOne("served-armor/body", config.Server.StatHat)
 		return skin.GetArmorBody
 	case "Armour/Body":
+		stathat.PostEZCountOne("served-armor/body", config.Server.StatHat)
 		return skin.GetArmorBody
 	default:
+		stathat.PostEZCountOne("served-default", config.Server.StatHat)
 		return skin.GetHelm
 	}
 }
@@ -143,7 +154,7 @@ func (router *Router) Bind() {
 	})
 
 	router.Mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, "https://minotar.net/", 302)
+		http.Redirect(w, r, "http://mcme.co/", 302)
 	})
 }
 

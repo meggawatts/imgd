@@ -19,6 +19,7 @@ type Configuration struct {
 		Address           string
 		Cache             string
 		StatisticsEnabled bool
+		StatHat           string
 	}
 
 	Redis struct {
