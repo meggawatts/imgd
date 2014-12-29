@@ -116,6 +116,7 @@ func (router *Router) Serve(resource string) {
 			return
 		}
 
+		log.Info(r.RemoteAddr + "|" + r.RequestURI + "|" + r.Host + "|" + r.Header.Get("Origin") + "|" + r.Header.Get("Via") + "|" + r.Header.Get("Referer"))
 		w.Header().Add("Content-Type", "image/png")
 		w.Header().Add("Cache-Control", fmt.Sprintf("public, max-age=%d", TimeoutActualSkin))
 		w.Header().Add("ETag", skin.Hash)
